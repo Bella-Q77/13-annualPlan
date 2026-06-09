@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年度评分表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>年度评分表</h1>
+            <div class="year-selector">
+                <label for="yearSelect">选择年份：</label>
+                <select id="yearSelect">
+                    <option value="2026">2026年</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <section class="score-section">
+                <div class="score-display">
+                    <div class="score-item">
+                        <span class="score-label">本年度评分</span>
+                        <span class="score-value" id="yearlyScore">100</span>
+                        <span class="score-max">/100</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="calendar-section">
+                <div class="calendar-header">
+                    <button id="prevMonthBtn" class="btn-secondary">上月</button>
+                    <h2 id="currentMonthYear">2026年5月</h2>
+                    <button id="nextMonthBtn" class="btn-secondary">下月</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div class="weekday">日</div>
+                    <div class="weekday">一</div>
+                    <div class="weekday">二</div>
+                    <div class="weekday">三</div>
+                    <div class="weekday">四</div>
+                    <div class="weekday">五</div>
+                    <div class="weekday">六</div>
+                </div>
+                <div id="calendarDays" class="calendar-days">
+                    <!-- 日历天数将通过 JS 动态生成 -->
+                </div>
+            </section>
+
+            <section class="tabs-section">
+                <div class="tabs">
+                    <button id="dailyTab" class="tab-btn active">当日计划</button>
+                    <button id="yearlyTab" class="tab-btn">年度计划列表</button>
+                </div>
+            </section>
+
+            <section id="dailyPlanSection" class="plan-section">
+                <div class="plan-header">
+                    <h2 id="currentDateTitle">2026年5月3日 计划</h2>
+                    <button id="addPlanBtn" class="btn-primary">添加计划</button>
+                </div>
+
+                <div id="planList" class="plan-list">
+                    <!-- 计划列表将通过 JS 动态生成 -->
+                </div>
+
+                <div id="noPlansMessage" class="no-plans-message">
+                    该日期暂无计划，请点击"添加计划"按钮添加新计划。
+                </div>
+            </section>
+
+            <section id="yearlyPlanSection" class="plan-section hidden">
+                <div class="plan-header">
+                    <h2 id="yearlyPlanTitle">2026年度计划列表</h2>
+                </div>
+                <div id="yearlyPlanList" class="yearly-plan-list">
+                    <!-- 年度计划列表将通过 JS 动态生成 -->
+                </div>
+                <div id="noYearlyPlansMessage" class="no-plans-message">
+                    本年度暂无计划，请点击"添加计划"按钮添加新计划。
+                </div>
+            </section>
+
+            <section class="modal-section" id="planModal">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeModalBtn">&times;</span>
+                    <h2 id="modalTitle">添加计划</h2>
+                    <form id="planForm">
+                        <input type="hidden" id="planId">
+                        <div class="form-group">
+                            <label for="planDate">日期：</label>
+                            <input type="date" id="planDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="planTitle">计划标题：</label>
+                            <input type="text" id="planTitle" placeholder="请输入计划标题" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="planDescription">计划描述：</label>
+                            <textarea id="planDescription" rows="3" placeholder="请输入计划描述（可选）"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="planImportance">重要程度：</label>
+                            <select id="planImportance">
+                                <option value="high">高（5分）</option>
+                                <option value="medium" selected>中（3分）</option>
+                                <option value="low">低（1分）</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="statusGroup">
+                            <label for="planStatus">状态：</label>
+                            <select id="planStatus">
+                                <option value="pending">待完成</option>
+                                <option value="completed">已完成</option>
+                                <option value="overdue">逾期未完成</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">保存</button>
+                            <button type="button" id="cancelBtn" class="btn-secondary">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>年度评分表 &copy; 2026</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
